@@ -13,7 +13,7 @@ RUN \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
 	pip3 install --upgrade \
 		transmissionrpc \
-		python-telegram-bot \
+		mechanicalsoup \
 		flexget && \
 	sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd && \
 	echo "**** cleanup ****" && \

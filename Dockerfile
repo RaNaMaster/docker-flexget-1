@@ -12,6 +12,7 @@ RUN \
 	echo "**** install flexget and addons ****" && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
 	apk add --no-cache --virtual .build-deps gcc musl-dev && \
+	apk add --no-cache python3-lxml && \
 	pip3 install --upgrade \
 		transmissionrpc \
 		beautifulsoup4==4.6.0 \
@@ -20,7 +21,6 @@ RUN \
 		certifi==2017.4.17 \
 		chardet==3.0.3 \
 		idna==2.5 \
-		python3-lxml \
 		urllib3==1.24.2 \
 		cython \
 		six==1.10.0 \

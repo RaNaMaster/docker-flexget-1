@@ -11,8 +11,7 @@ RUN \
 	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
 	echo "**** install flexget and addons ****" && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache --virtual .build-deps gcc musl-dev && \
-	apk add --no-cache py3-lxml g++ gcc libxslt-dev && \
+	apk add --no-cache py3-lxml g++ gcc && \
 	pip3 install --upgrade \
 		transmissionrpc \
 		beautifulsoup4==4.6.0 \

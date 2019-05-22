@@ -14,6 +14,7 @@ RUN \
 	pip3 install --upgrade \
 		transmissionrpc \
 		beautifulsoup4==4.6.0 \
+		mechanicalsoup \
 		six==1.10.0 \
 		flexget && \
 	sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd && \

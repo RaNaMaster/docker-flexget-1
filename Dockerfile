@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.9
 MAINTAINER wiserain
 
 RUN \
@@ -12,7 +12,7 @@ RUN \
 	echo "**** install flexget and addons ****" && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
 	apk add --no-cache --virtual .build-deps gcc musl-dev && \
-	apk add --no-cache python3-lxml g++ gcc libxslt-dev && \
+	apk add --no-cache py3-lxml g++ gcc libxslt-dev && \
 	pip3 install --upgrade \
 		transmissionrpc \
 		beautifulsoup4==4.6.0 \

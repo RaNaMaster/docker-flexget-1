@@ -3,7 +3,7 @@ MAINTAINER wiserain
 
 RUN \
 	echo "**** install frolvlad/alpine-python3 ****" && \
-	apk add --no-cache python3 && \
+	apk add --no-cache python3-dev && \
 	python3 -m ensurepip && \
 	rm -r /usr/lib/python*/ensurepip && \
 	pip3 install --upgrade pip setuptools && \
@@ -11,7 +11,7 @@ RUN \
 	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
 	echo "**** install flexget and addons ****" && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache py3-lxml g++ gcc && \
+	apk add --no-cache py3-lxml && \
 	pip3 install --upgrade \
 		transmissionrpc \
 		beautifulsoup4==4.6.0 \

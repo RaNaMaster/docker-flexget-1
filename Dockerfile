@@ -21,6 +21,7 @@ RUN \
 		chardet==3.0.3 \
 		idna==2.5 \
 		urllib3==1.24.2 \
+		youtube_dl \
 		cython \
 		six==1.10.0 \
 		flexget && \

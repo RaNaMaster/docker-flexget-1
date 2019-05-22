@@ -1,6 +1,8 @@
 FROM alpine:3.9
 MAINTAINER wiserain
 
+ARG ATOMIC_PARSLEY_URL="https://bitbucket.org/shield007/atomicparsley/raw/68337c0c05ec4ba2ad47012303121aaede25e6df/downloads/build_linux_x86_64/AtomicParsley"
+
 RUN \
 	echo "**** install frolvlad/alpine-python3 ****" && \
 	apk add --no-cache python3-dev && \
@@ -12,6 +14,8 @@ RUN \
 	echo "**** install flexget and addons ****" && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
 	apk add --no-cache py3-lxml g++ gcc ffmpeg libmagic && \
+        && curl -L -o AtomicParsley ${ATOMIC_PARSLEY_URL} \
+        && install -m 755 ./AtomicParsley /usr/local/bin
 	pip3 install --upgrade \
 		transmissionrpc \
 		beautifulsoup4==4.6.0 \

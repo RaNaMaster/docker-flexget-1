@@ -22,7 +22,6 @@ RUN \
 		idna==2.5 \
 		urllib3==1.24.2 \
 		cython \
-		libxml2 \
 		six==1.10.0 \
 		flexget && \
 	sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd && \

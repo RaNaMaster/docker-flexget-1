@@ -11,7 +11,7 @@ RUN \
 	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
 	echo "**** install flexget and addons ****" && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache py3-lxml g++ gcc && \
+	apk add --no-cache py3-lxml g++ gcc ffmpeg && \
 	pip3 install --upgrade \
 		transmissionrpc \
 		beautifulsoup4==4.6.0 \
@@ -22,7 +22,6 @@ RUN \
 		idna==2.5 \
 		urllib3==1.24.2 \
 		youtube-dl \
-		ffmpeg \
 		cython \
 		six==1.10.0 \
 		flexget && \

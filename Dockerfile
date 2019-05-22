@@ -4,6 +4,7 @@ MAINTAINER wiserain
 RUN \
 	echo "**** install frolvlad/alpine-python3 ****" && \
 	apk add --no-cache python3 && \
+	apk add --no-cache --virtual .build-deps gcc musl-dev && \
 	python3 -m ensurepip && \
 	rm -r /usr/lib/python*/ensurepip && \
 	pip3 install --upgrade pip setuptools && \

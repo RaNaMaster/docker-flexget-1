@@ -17,6 +17,9 @@ RUN \
 		mechanicalsoup \
 		requests==2.21.0 \
 		certifi==2017.4.17 \
+		chardet==3.0.3 \
+		idna==2.5 \
+		urllib3==1.24.2 \
 		six==1.10.0 \
 		flexget && \
 	sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd && \

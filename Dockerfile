@@ -20,6 +20,7 @@ RUN \
 		certifi==2017.4.17 \
 		chardet==3.0.3 \
 		idna==2.5 \
+		python3-lxml \
 		urllib3==1.24.2 \
 		cython \
 		six==1.10.0 \

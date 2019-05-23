@@ -36,7 +36,7 @@ RUN \
 COPY files/ /
 
 # add default volumes
-VOLUME /config /data
+VOLUME /config /data /music
 WORKDIR /config
 
 # expose port for flexget webui

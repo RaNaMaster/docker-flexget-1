@@ -46,3 +46,4 @@ EXPOSE 3539 3539/tcp
 # run init.sh to set uid, gid, permissions and to launch flexget
 RUN chmod +x /scripts/init.sh
 CMD ["/scripts/init.sh"]
+

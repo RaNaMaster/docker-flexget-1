@@ -15,6 +15,7 @@ RUN \
 	apk add --no-cache py3-lxml g++ gcc ffmpeg libmagic && \
 	pip3 install --upgrade \
 		transmissionrpc \
+		libtorrent \
 		beautifulsoup4==4.6.0 \
 		mechanicalsoup \
 		requests==2.21.0 \

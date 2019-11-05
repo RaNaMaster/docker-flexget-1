@@ -15,7 +15,7 @@ RUN \
 	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
 	echo "**** install flexget and addons ****" && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache bash py3-lxml py3-xdg@community py3-pyhamcrest@community g++ gcc ffmpeg libmagic@community deluge@testing boost-python3@main libtorrent-rasterbar@testing && \
+	apk add --no-cache bash py3-lxml g++ gcc ffmpeg libmagic libtorrent@community libtorrent-rasterbar@testing && \
 	pip3 install --upgrade \
 		transmissionrpc \
 		irc_bot \

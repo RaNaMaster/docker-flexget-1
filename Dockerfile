@@ -15,7 +15,7 @@ RUN \
 	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
 	echo "**** install flexget and addons ****" && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache bash py3-lxml g++ gcc ffmpeg libmagic libtorrent@community libtorrent-rasterbar@testing && \
+	apk add --no-cache bash py3-lxml g++ gcc ffmpeg libmagic libtorrent@community && \
 	pip3 install --upgrade \
 		transmissionrpc \
 		irc_bot \
@@ -39,6 +39,12 @@ RUN \
 
 # copy local files
 COPY files/ /
+
+# copy libtorrent libs
+COPY --from=emmercm/libtorrent:1.2.2-alpine /usr/lib/libtorrent-rasterbar.so.10 /usr/lib/
+COPY --from=emmercm/libtorrent:1.2.2-alpine /usr/lib/python3.7/site-packages/libtorrent*.so /usr/lib/python3.7/site-packages/
+COPY --from=emmercm/libtorrent:1.2.2-alpine /usr/lib/python3.7/site-packages/python_libtorrent-*.egg-info /usr/lib/python3.7/site-packages/
+
 
 # add default volumes
 VOLUME /config /data

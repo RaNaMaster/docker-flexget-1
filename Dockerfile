@@ -2,7 +2,9 @@ FROM alpine
 MAINTAINER wiserain
 
 RUN \
-	echo "**** install frolvlad/alpine-python3 ****" && \
+	echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+        apk update && \
+        apk add --upgrade apk-tools && \
 	apk add --no-cache python3-dev && \
 	python3 -m ensurepip && \
 	rm -r /usr/lib/python*/ensurepip && \
@@ -12,7 +14,7 @@ RUN \
 	echo "**** install flexget and addons ****" && \
 	apk add atomicparsley --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache py3-lxml g++ gcc ffmpeg libmagic deluge && \
+	apk add --no-cache py3-lxml g++ gcc ffmpeg libmagic py3-libtorrent-rasterbar@testing && \
 	pip3 install --upgrade \
 		transmissionrpc \
 		irc_bot \

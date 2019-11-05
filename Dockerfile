@@ -28,6 +28,7 @@ RUN \
 		youtube-dl \
 		cython \
 		six==1.10.0 \
+		future==0.16.0 \
 		flexget && \
 	sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd && \
 	echo "**** cleanup ****" && \

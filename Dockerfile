@@ -12,10 +12,9 @@ RUN \
 	echo "**** install flexget and addons ****" && \
 	apk add atomicparsley --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache py3-lxml g++ gcc ffmpeg libmagic && \
+	apk add --no-cache py3-lxml g++ gcc ffmpeg libmagic libtorrent py3-libtorrent && \
 	pip3 install --upgrade \
 		transmissionrpc \
-		deluge_client \
 		irc_bot \
 		beautifulsoup4==4.6.0 \
 		mechanicalsoup \
@@ -28,7 +27,6 @@ RUN \
 		cython \
 		six==1.10.0 \
 		flexget && \
-		future==0.16.0 \
 	sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd && \
 	echo "**** cleanup ****" && \
 	rm -rf \

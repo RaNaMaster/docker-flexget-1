@@ -3,6 +3,7 @@ MAINTAINER wiserain
 
 RUN \
 	echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+	echo "@main http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
         apk update && \
         apk add --upgrade apk-tools && \
 	apk add --no-cache python3-dev && \
@@ -13,7 +14,7 @@ RUN \
 	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
 	echo "**** install flexget and addons ****" && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache py3-lxml g++ gcc ffmpeg libmagic boost-python3 py3-libtorrent-rasterbar@testing && \
+	apk add --no-cache py3-lxml g++ gcc ffmpeg libmagic boost-python3@main py3-libtorrent-rasterbar@testing && \
 	pip3 install --upgrade \
 		transmissionrpc \
 		irc_bot \

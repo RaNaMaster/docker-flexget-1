@@ -12,7 +12,21 @@ RUN \
 	echo "**** install flexget and addons ****" && \
 	apk add atomicparsley --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache py3-lxml g++ gcc ffmpeg libmagic libtorrent libtorrent-rasterbar && \
+	apk add --no-cache py3-lxml g++ gcc ffmpeg libmagic libtorrent && \
+	# install Libtorrent
+	&& LIBTORRENT_RASTERBAR_URL=$(curl -sSL https://api.github.com/repos/arvidn/libtorrent/releases/latest | grep browser_download_url  | head -n 1 | cut -d '"' -f 4) \
+ 	&& mkdir /tmp/libtorrent-rasterbar \
+ 	&& curl -sSL $LIBTORRENT_RASTERBAR_URL | tar xzC /tmp/libtorrent-rasterbar \
+	&& cd /tmp/libtorrent-rasterbar/* \
+	&& mkdir build \
+	&& cd build \
+	&& cmake .. \
+	&& make install \
+        # Clean-up
+	&& cd / \
+ 	&& apk del --purge .build-deps \
+	&& rm -rf /tmp/*
+	
 	pip3 install --upgrade \
 		transmissionrpc \
 		irc_bot \

@@ -28,6 +28,7 @@ RUN \
 		cython \
 		six==1.10.0 \
 		flexget && \
+		future==0.16.0 \
 	sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd && \
 	echo "**** cleanup ****" && \
 	rm -rf \

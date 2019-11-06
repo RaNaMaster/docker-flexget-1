@@ -18,6 +18,7 @@ RUN \
 	apk add --no-cache bash py3-lxml g++ gcc ffmpeg libmagic boost-python3 libstdc++ && \
 	pip3 install --upgrade \
 		transmissionrpc \
+		rarfile \
 		irc_bot \
 		beautifulsoup4==4.6.0 \
 		mechanicalsoup \

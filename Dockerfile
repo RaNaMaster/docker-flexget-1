@@ -48,7 +48,7 @@ COPY --from=emmercm/libtorrent:1.2.2-alpine /usr/lib/python3.7/site-packages/pyt
 
 
 # add default volumes
-VOLUME /config /data
+VOLUME /config /downloads
 WORKDIR /config
 
 

@@ -29,7 +29,7 @@ RUN \
 		urllib3==1.24.2 \
 		youtube-dl \
 		cython \
-		six==1.10.0 \
+		six==1.13.0 \
 		future==0.16.0 \
 		flexget && \
 	sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd && \

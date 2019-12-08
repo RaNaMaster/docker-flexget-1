@@ -15,7 +15,7 @@ RUN \
 	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
 	echo "**** install flexget and addons ****" && \
 	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache bash py3-lxml g++ gcc ffmpeg libmagic boost-python3 libstdc++ && \
+	apk add --no-cache bash py3-lxml g++ gcc ffmpeg libmagic boost-python3 libstdc++ atomicparsley && \
 	pip3 install --upgrade \
 		transmissionrpc \
 		rarfile \

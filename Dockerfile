@@ -20,16 +20,6 @@ RUN \
 	pip install --upgrade cloudscraper && \
 	pip3 install --upgrade \
 		transmissionrpc \
-		eyed3\
-		urllib3\
-		request\
-		pathlib\
-		requests\
-		mutagen\
-		pySmartDL\
-		logger\
-		lxml\
-		aiohttp\
 		rarfile \
 		irc_bot \
 		beautifulsoup4==4.6.0 \

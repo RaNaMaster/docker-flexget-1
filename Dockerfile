@@ -2,43 +2,56 @@ FROM alpine
 MAINTAINER wiserain
 
 RUN \
-	echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-	echo "@main http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-	echo "@community http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-        apk update && \
-        apk add --upgrade apk-tools && \
-	apk add --no-cache python3-dev && \
+    echo "**** install frolvlad/alpine-python3 ****" && \
+	apk add --no-cache python3 && \
+	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
 	python3 -m ensurepip && \
 	rm -r /usr/lib/python*/ensurepip && \
-	pip3 install --upgrade pip setuptools && \
-	if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-	if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
-	echo "**** install flexget and addons ****" && \
-	apk --no-cache add shadow ca-certificates tzdata py3-cryptography && \
-	apk add --no-cache --virtual=build-deps python3-dev libffi-dev openssl-dev && \
-	apk add --no-cache bash py3-lxml g++ gcc ffmpeg libmagic boost-python3 libstdc++ atomicparsley && \
+	pip3 install --no-cache --upgrade pip setuptools wheel && \
+	if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip; fi && \
+	echo "**** install dependencies for plugin: telegram ****" && \
+	apk add --no-cache --virtual=build-deps gcc python3-dev libffi-dev musl-dev openssl-dev && \
+	pip install --upgrade python-telegram-bot==12.8 PySocks && \
+	apk del --purge --no-cache build-deps && \
+	echo "**** install dependencies for plugin: cfscraper ****" && \
+	apk add --no-cache --virtual=build-deps g++ gcc python3-dev libffi-dev openssl-dev && \
 	pip install --upgrade cloudscraper && \
-	pip3 install --upgrade \
+	apk del --purge --no-cache build-deps && \
+	echo "**** install dependencies for plugin: convert_magnet ****" && \
+	apk add --no-cache boost-python3 libstdc++ && \
+	echo "**** install dependencies for plugin: decompress ****" && \
+	apk add --no-cache unrar && \
+	pip install --upgrade \
+		rarfile && \
+	echo "**** install dependencies for plugin: misc ****" && \
+	pip install --upgrade \
 		transmissionrpc \
-		rarfile \
-		irc_bot \
-		beautifulsoup4==4.6.0 \
-		mechanicalsoup \
-		requests==2.21.0 \
-		certifi==2017.4.17 \
-		chardet==3.0.3 \
-		idna==2.5 \
-		urllib3==1.24.2 \
 		youtube-dl \
+                rarfile \
+		irc_bot \
+		beautifulsoup4\
+		mechanicalsoup \
+		requests \
+		certifi \
+		chardet \
+		idna \
+		urllib3 \
 		cython \
-		six==1.13.0 \
-		future==0.16.0 \
+		six \
+		future \
+	echo "**** install flexget ****" && \
+	apk add --no-cache --virtual=build-deps gcc libxml2-dev libxslt-dev libc-dev python3-dev jpeg-dev && \
+	pip install --upgrade --force-reinstall \
 		flexget && \
-	sed -i 's/^CREATE_MAIL_SPOOL=yes/CREATE_MAIL_SPOOL=no/' /etc/default/useradd && \
+	apk del --purge --no-cache build-deps && \
+	apk add --no-cache libxml2 libxslt jpeg && \
+	echo "**** system configurations ****" && \
+	apk --no-cache add bash bash-completion tzdata && \
 	echo "**** cleanup ****" && \
 	rm -rf \
 		/tmp/* \
 		/root/.cache
+
 
 # copy local files
 COPY files/ /
